@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using System.ComponentModel.DataAnnotations;
 namespace Pellys.Models
 {
     public class Movie
     {
+        [Key]
         public int MovieId { get; set; }
+
+        [Required]
+        [MinLength(3), MaxLength(20)]
         public string MovieTitle { get; set; }
 
 
@@ -19,6 +23,6 @@ namespace Pellys.Models
 
 
         public virtual ICollection<Tape> Tapes { get; set; }
-        public virtual ICollection<Actor> Actors { get; set; }
+        public virtual ICollection<ActorMovies> ActorMovies { get; set; }
     }
 }
