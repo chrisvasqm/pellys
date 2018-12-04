@@ -15,6 +15,10 @@ namespace Pellys.Data
         public virtual DbSet<Tape> Tapes { get; set; }
         public virtual DbSet<WaitingList> WaitingLists { get; set; }
 
+        public ApplicationDbContext(DbContextOptions options) : base(options)
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
