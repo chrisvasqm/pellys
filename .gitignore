@@ -10,3 +10,6 @@ gen
 build/
 obj/
 .vs
+bin/
+appsettings.json
+appsettings.Development.json
