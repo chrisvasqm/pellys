@@ -12,14 +12,17 @@ namespace Pellys.Models
 
         [Required]
         [MinLength(3), MaxLength(20)]
+        [Display(Name = "Nombre")]
         public string PartnerName { get; set; }
 
         [Required]
         [EmailAddress]
+        [Display(Name = "Correo electronico")]
         public string PartnerAddress { get; set; }
 
         [Required]
         [Phone]
+        [Display(Name = "Telefono")]
         public string PartnerTelephone { get; set; }
 
 
