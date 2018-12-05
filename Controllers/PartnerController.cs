@@ -30,7 +30,7 @@ namespace Pellys.Controllers
         public IActionResult GetPartner()
         {
             var partners = _context.Partners.ToList();
-            
+
             return Json(partners);
         }
 
@@ -45,23 +45,48 @@ namespace Pellys.Controllers
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            Partner partner = _context.Partners.Find(id);
+            var partner = _context.Partners.Find(id);
+
             if (partner == null)
                 return Json("0");
-            else
+
+            try
             {
-                try
-                {
-                    _context.Partners.Remove(partner);
-                    _context.SaveChanges();
-                    return Json("1");
-                }
-                catch(Exception ex)
-                {
-                    return Json(ex.InnerException);
-                }
+                _context.Partners.Remove(partner);
+                _context.SaveChanges();
+                return Json("1");
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.InnerException);
             }
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Save(Partner partner)
+        {
+            if (!ModelState.IsValid)
+            {
+                var model = new Partner();
+
+                return View("New", model);
+            }
+
+            if (partner.PartnerId == 0)
+                _context.Partners.Add(partner);
+            else
+            {
+                var partnerInDb = _context.Partners.Single(m => m.PartnerId == partner.PartnerId);
+
+                partnerInDb.PartnerName = partner.PartnerName;
+                partnerInDb.PartnerAddress = partner.PartnerAddress;
+                partnerInDb.PartnerTelephone = partner.PartnerTelephone;
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Partner");
+        }
     }
 }
