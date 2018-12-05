@@ -2,22 +2,42 @@
     ViewData["Title"] = "Home Page";
     Layout = @"_Layout";
 }
-<style type="text/css">
-    .btn-stacked {
-        display: block;
-        width: 20%;
-        margin: 10px auto;
-    }
-</style>
 
-<div class="text-center">
-    <h1 style="margin-bottom: 40px">Menu principal</h1>
 
-    @Html.ActionLink("Nueva solicitud", null, null, null, new {@class = "btn btn-primary btn-stacked"})
-    @Html.ActionLink("Almacén de películas", null, null, null, new {@class = "btn btn-primary btn-stacked"})
-    @Html.ActionLink("Lista de espera", null, null, null, new {@class = "btn btn-primary btn-stacked"})
-    @Html.ActionLink("Socios", "Index", "Partner", null, new {@class = "btn btn-primary btn-stacked"})
-    @Html.ActionLink("Recibir película", null, null, null, new {@class = "btn btn-primary btn-stacked"})
-    @Html.ActionLink("Películas prestadas", null, null, null, new {@class = "btn btn-primary btn-stacked"})
-    @Html.ActionLink("Películas devueltas", null, null, null, new {@class = "btn btn-primary btn-stacked"})
+<div class="siteLink my-5 container">
+    <div class="card  siteLinkItem">
+        <div class="card-body text-center siteLinkitemContent ">
+            <a href="/#"><strong>Nueva solicitud</strong></a>
+        </div>
+    </div>
+    <div class="card  siteLinkItem">
+        <div class="card-body text-center siteLinkitemContent ">
+            <a href="/#"><strong>Almacén de películas</strong></a>
+        </div>
+    </div>
+    <div class="card  siteLinkItem">
+        <div class="card-body text-center siteLinkitemContent ">
+            <a href="/#"><strong>Lista de espera</strong></a>
+        </div>
+    </div>
+    <div class="card  siteLinkItem">
+        <div class="card-body text-center siteLinkitemContent">
+            <a href="/Partner/Index"><strong>Socios</strong></a>
+        </div>
+    </div>
+    <div class="card  siteLinkItem">
+        <div class="card-body text-center siteLinkitemContent">
+            <a href="/#"><strong>Recibir película</strong></a>
+        </div>
+    </div>
+    <div class="card  siteLinkItem">
+        <div class="card-body text-center siteLinkitemContent">
+            <a href="/#"><strong>Películas prestadas</strong></a>
+        </div>
+    </div>
+    <div class="card  siteLinkItem">
+        <div class="card-body text-center siteLinkitemContent">
+            <a href="/#"><strong>Películas devueltas</strong></a>
+        </div>
+    </div>
 </div>

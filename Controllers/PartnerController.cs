@@ -1,10 +1,13 @@
+using System;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Pellys.Data;
 using Pellys.Models;
 
 namespace Pellys.Controllers
 {
+    [Authorize]
     public class PartnerController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -21,10 +24,16 @@ namespace Pellys.Controllers
 
         public IActionResult Index()
         {
-            var partners = _context.Partners.ToList();
-
-            return View(partners);
+            return View();
         }
+
+        public IActionResult GetPartner()
+        {
+            var partners = _context.Partners.ToList();
+            
+            return Json(partners);
+        }
+
 
         public IActionResult New()
         {
@@ -32,5 +41,27 @@ namespace Pellys.Controllers
 
             return View(partner);
         }
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            Partner partner = _context.Partners.Find(id);
+            if (partner == null)
+                return Json("0");
+            else
+            {
+                try
+                {
+                    _context.Partners.Remove(partner);
+                    _context.SaveChanges();
+                    return Json("1");
+                }
+                catch(Exception ex)
+                {
+                    return Json(ex.InnerException);
+                }
+            }
+        }
+
     }
 }
